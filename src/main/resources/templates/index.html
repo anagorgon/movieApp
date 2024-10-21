@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie List</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+  <h1 class="mt-4">Movie List</h1>
+  <a href="/movies/create" class="btn btn-primary mb-3">Create New Movie</a>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Producer</th>
+      <th>Rating</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="movie : ${movies}">
+      <td th:text="${movie.id}">1</td>
+      <td th:text="${movie.name}">Name</td>
+      <td th:text="${movie.description}">Description</td>
+      <td th:text="${movie.producer}">Producer</td>
+      <td th:text="${movie.rating}">Rating</td>
+      <td>
+        <a th:href="@{/movies/edit/{id}(id=${movie.id})}" class="btn btn-warning btn-sm">Edit</a>
+        <a th:href="@{/movies/delete/{id}(id=${movie.id})}" class="btn btn-danger btn-sm">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
